@@ -1,4 +1,20 @@
 ---
+import '../../styles/global.css';
 import ReactBlog from "@/components/react/ReactBlog"
 ---
-<ReactBlog client:load />
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content="This is Tikur Azmud Telemdicine platform!" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Tikur Azmud</title>
+	</head>
+	
+ 
+	<body>
+		<ReactBlog client:load />
+	</body>
+</html>
