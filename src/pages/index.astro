@@ -1,22 +1,29 @@
 ---
 import '../styles/global.css';
-// Component Imports
 import Button from '../components/Button.astro';
+import Navigation from '@/components/Navigation.astro';
+import BlogHomeDisplay from '@/components/BlogHomeDisplay.astro';
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+const BACKEND_API = "https://test-subdomain.keyrunasir.com";
+const data = await fetch(`${BACKEND_API}/api/blog/fetchallblogs`);
+const response = await data.json();
+console.log("response", response)
+
+
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content="This is Tikur Azmud Telemdicine platform!" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
+		<title>Tikur Azmud</title>
 	</head>
-
+   <Navigation />
 	<body>
+		<BlogHomeDisplay blogs={response.post} />
 		<div class="grid place-items-center h-screen content-center">
 			<Button>Tailwind Button in Astro!</Button>
 			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>

@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /login/
+Disallow: /register/
+Disallow: /checkout/
+Disallow: /user/
+
+Allow: *.css
+Allow: *.js
+Allow: /static/
+Allow: /assets/
+
+Sitemap: https://tikurazmud.keyrunasir.com/sitemap-index.xml
+
