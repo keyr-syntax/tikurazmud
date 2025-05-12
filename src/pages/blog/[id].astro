@@ -1,7 +1,5 @@
 ---
-import {SEO} from "astro-seo";
-import Navigation from "@/components/Navigation.astro";
-// const BACKEND_API = "https://test-subdomain.keyrunasir.com";
+import Layout from "../../layouts/main.astro";
 export const prerender = true;
 
 export async function   getStaticPaths  () {
@@ -36,55 +34,43 @@ try {
 }
 
 ---
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-        <meta name="description" content={blog.content} />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <SEO
-        title={blog ? blog.title : "No title found"}
-        description={blog ? blog.content : "No content"}
-        
-         />
-		<meta name="generator" content={Astro.generator} />
-		<title>Tikur Azmud Blog</title>
-	</head>
-   <Navigation />
-	<body>
-		{
-            blog ? <div class="flex flex-col border-[rgb(255,255,255,0.2)] border rounded w-[50%]  px-4 py-2 gap-4">
-            <p>{
-                blog.author
-                }</p>
-            <p>
-                {
-                    blog.title
-                }
-            </p>
-            <p>
-                {
-                    blog.content
-                }
-            </p>
-            <div class="flex flex-row gap-4">
-                <button class="flex flex-row gap-2 border border-[rgb(255,255,255,0.2)] rounded px-2 py-1">
-                    <span>{
-                        blog.likes
-                    }</span>
-                    Likes</button>
-                <button class="flex flex-row gap-2 border border-[rgb(255,255,255,0.2)] rounded px-2 py-1">
-                    <span>{
-                        blog.likes
-                    }</span>
-                    Views</button>
-                <button class="flex flex-row gap-2 border border-[rgb(255,255,255,0.2)] rounded px-2 py-1">
-                    <span>{
-                        blog.shares
-                    }</span>
-                    Shares</button>
-            </div>
-        </div> : <div>No Blog found!</div>
-        }
-	</body>
-</html>
+<Layout title={
+    blog.title
+} description={
+    blog.content
+} >
+    {
+        blog ? <div class="flex flex-col border-[rgb(255,255,255,0.2)] border rounded w-[80%]  px-4 py-2 gap-4 m-auto">
+        <p>{
+            blog.author
+            }</p>
+        <p>
+            {
+                blog.title
+            }
+        </p>
+        <p>
+            {
+                blog.content
+            }
+        </p>
+        <div class="flex flex-row gap-4">
+            <button class="flex flex-row gap-2 border border-[rgb(255,255,255,0.2)] rounded px-2 py-1">
+                <span>{
+                    blog.likes
+                }</span>
+                Likes</button>
+            <button class="flex flex-row gap-2 border border-[rgb(255,255,255,0.2)] rounded px-2 py-1">
+                <span>{
+                    blog.likes
+                }</span>
+                Views</button>
+            <button class="flex flex-row gap-2 border border-[rgb(255,255,255,0.2)] rounded px-2 py-1">
+                <span>{
+                    blog.shares
+                }</span>
+                Shares</button>
+        </div>
+    </div> : <div>No Blog found!</div>
+    }
+</Layout>

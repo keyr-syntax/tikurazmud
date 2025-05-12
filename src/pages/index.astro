@@ -1,32 +1,30 @@
 ---
 import '../styles/global.css';
-import Button from '../components/Button.astro';
+import Layout from "../layouts/main.astro";
 import BlogHomeDisplay from '@/components/BlogHomeDisplay.astro';
-import NavigationMenu from "../components/react/Navigation";
+import ReactBlog from '@/components/react/ReactBlog';
+import SearchSuggestion from '@/components/react/search/SearchSuggestion';
 const BACKEND_API = "https://test-subdomain.keyrunasir.com";
-const data = await fetch(`${BACKEND_API}/api/blog/fetchallblogs`);
-const response = await data.json();
+let blogs = null;
+try {
+	const data = await fetch(`${BACKEND_API}/api/blog/fetchallblogs`);
+    const response = await data.json();
+	if(response.success){
+
+		blogs = response.post;
+
+	} else {
+		blogs = null;
+	}
+} catch (error) {
+	blogs = null;
+};
 // console.log("response", response)
-
-
 ---
+<Layout title="Home" >
+	<!-- {
+		blogs ? <BlogHomeDisplay blogs={blogs} /> : <ReactBlog />
+	} -->
+		<!-- <SearchSuggestion client:only="react"  /> -->
+</Layout>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="description" content="This is Tikur Azmud Telemdicine platform!" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Tikur Azmud</title>
-	</head>
-	<NavigationMenu client:load />
- 
-	<body>
-		<BlogHomeDisplay blogs={response.post} />
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-		</div>
-	</body>
-</html>
