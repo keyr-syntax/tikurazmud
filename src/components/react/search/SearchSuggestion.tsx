@@ -12,7 +12,7 @@ function SearchSuggestion() {
       );
       const response = await data.json();
       if (response.success) {
-        console.log("search", response.suggestion);
+        console.log("response", response);
         searchSuggestionStore.setState({
           searchResult: response.suggestion,
           loading: false,
@@ -71,14 +71,35 @@ function SearchSuggestion() {
             groupSearchSuggestions.doctor &&
             groupSearchSuggestions.doctor.length > 0 && (
               <>
-                <div className="px-1  text-sm text-gray-500">
+                <div className="px-1 text-sm text-gray-500">
                   <ul>
                     {groupSearchSuggestions.doctor.map((doc) => (
                       <li
                         key={doc.physicianID}
-                        className="px-2 py-2 hover:bg-[#151563] cursor-pointer border border-[rgb(255,255,255,0.2)] rounded my-1"
+                        className="flex items-center gap-4 p-4 hover:bg-[#151563] cursor-pointer border border-white/20 rounded-lg my-2"
                       >
-                        {highlightMatch(doc.name)}
+                        <img
+                          src={doc.profilePicture}
+                          alt={doc.name}
+                          className="w-14 h-14 rounded-full object-cover"
+                        />
+                        <div className="flex flex-col">
+                          <p className="font-medium text-white">
+                            Dr. {highlightMatch(doc.name)}
+                          </p>
+                          <div className="flex flex-wrap gap-2 mt-1">
+                            {doc.specialtyList &&
+                              doc.specialtyList.length > 0 &&
+                              doc.specialtyList.map((specialty, index) => (
+                                <span
+                                  key={index}
+                                  className="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs"
+                                >
+                                  {specialty.specialty}
+                                </span>
+                              ))}
+                          </div>
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -95,9 +116,21 @@ function SearchSuggestion() {
                     {groupSearchSuggestions.specialty.map((spec) => (
                       <li
                         key={spec.aboutDoctorID}
-                        className="px-2 py-2 hover:bg-[#151563] cursor-pointer border border-[rgb(255,255,255,0.2)] rounded my-1"
+                        className="flex items-center gap-4 p-4 hover:bg-[#151563] cursor-pointer border border-white/20 rounded-lg my-2"
                       >
-                        {highlightMatch(spec.specialty)}
+                        <img
+                          src={spec.profilePicture}
+                          alt={spec.name}
+                          className="w-14 h-14 rounded-full object-cover"
+                        />
+                        <div className="flex flex-col gap-4">
+                          <p className="font-medium text-white">
+                            Dr. {spec.name}
+                          </p>
+                          <p className="bg-blue-100 text-black px-2 py-0.5 rounded-full text-xs">
+                            {highlightMatch(spec.specialty)}
+                          </p>
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -109,14 +142,40 @@ function SearchSuggestion() {
             groupSearchSuggestions.language &&
             groupSearchSuggestions.language.length > 0 && (
               <>
-                <div className="px-1  text-sm text-gray-500">
+                <div className="px-1 text-sm text-gray-500">
                   <ul>
                     {groupSearchSuggestions.language.map((lang) => (
                       <li
                         key={lang.aboutDoctorID}
-                        className="px-2 py-2 hover:bg-[#151563] cursor-pointer border border-[rgb(255,255,255,0.2)] rounded my-1"
+                        className="flex items-center gap-4 p-4 hover:bg-[#151563] cursor-pointer border border-white/20 rounded-lg my-2"
                       >
-                        {highlightMatch(lang.spokenLanguage)}
+                        <img
+                          src={lang.profilePicture}
+                          alt={lang.name}
+                          className="w-14 h-14 rounded-full object-cover"
+                        />
+                        <div className="flex flex-col gap-2">
+                          {" "}
+                          <p className="font-medium text-white">
+                            Dr. {lang.name}
+                          </p>
+                          <div className="flex flex-wrap gap-2 mt-1">
+                            {lang.specialtyList &&
+                              lang.specialtyList.length > 0 &&
+                              lang.specialtyList.map((specialty, index) => (
+                                <span
+                                  key={index}
+                                  className="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs"
+                                >
+                                  {specialty.specialty}
+                                </span>
+                              ))}
+                          </div>
+                          <p className="font-medium text-white">
+                            {" "}
+                            {highlightMatch(lang.spokenLanguage)}
+                          </p>
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -128,14 +187,40 @@ function SearchSuggestion() {
             groupSearchSuggestions.location &&
             groupSearchSuggestions.location.length > 0 && (
               <>
-                <div className="px-1  text-sm text-gray-500">
+                <div className="px-1 text-sm text-gray-500">
                   <ul>
                     {groupSearchSuggestions.location.map((loc) => (
                       <li
                         key={loc.aboutDoctorID}
-                        className="px-2 py-2 hover:bg-[#151563] cursor-pointer border border-[rgb(255,255,255,0.2)] rounded my-1"
+                        className="flex items-center gap-4 p-4 hover:bg-[#151563] cursor-pointer border border-white/20 rounded-lg my-2"
                       >
-                        {highlightMatch(loc.location)}
+                        <img
+                          src={loc.profilePicture}
+                          alt={loc.name}
+                          className="w-14 h-14 rounded-full object-cover"
+                        />
+                        <div className="flex flex-col gap-2">
+                          {" "}
+                          <p className="font-medium text-white">
+                            Dr. {loc.name}
+                          </p>
+                          <div className="flex flex-wrap gap-2 mt-1">
+                            {loc.specialtyList &&
+                              loc.specialtyList.length > 0 &&
+                              loc.specialtyList.map((specialty, index) => (
+                                <span
+                                  key={index}
+                                  className="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs"
+                                >
+                                  {specialty.specialty}
+                                </span>
+                              ))}
+                          </div>
+                          <p className="font-medium text-white">
+                            {" "}
+                            {highlightMatch(loc.location)}
+                          </p>
+                        </div>
                       </li>
                     ))}
                   </ul>

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-menubar";
-import React from "react";
 import { useForm } from "react-hook-form";
 import { Eye, EyeOff } from "lucide-react";
 import {
@@ -93,29 +92,26 @@ function RegisterNewDoctor() {
             )}
           </div>
           <div className="grid gap-2 w-1/2">
-              <Label className="text-md" >
-                Gender
-              </Label>
-              <select
-                id="gender"
-                className="block  w-full border border-solid border-[rgb(255,255,255,0.2)]  p-2 bg-transparent rounded"
-                {...register("gender", { required: "Gender is required" })}
-              >
-                <option className="text-white bg-[#151533]" value="">
-                  Select Gender
-                </option>
-                <option className="text-white bg-[#151533]" value="male">
-                  Male
-                </option>
-                <option className="text-white bg-[#151533]" value="female">
-                  Female
-                </option>
-                
-              </select>
-              {errors.gender && (
-                <p className="text-red-500 text-sm">{errors.gender.message}</p>
-              )}
-            </div>
+            <Label className="text-md">Gender</Label>
+            <select
+              id="gender"
+              className="block  w-full border border-solid border-[rgb(255,255,255,0.2)]  p-2 bg-transparent rounded"
+              {...register("gender", { required: "Gender is required" })}
+            >
+              <option className="text-white bg-[#151533]" value="">
+                Select Gender
+              </option>
+              <option className="text-white bg-[#151533]" value="male">
+                Male
+              </option>
+              <option className="text-white bg-[#151533]" value="female">
+                Female
+              </option>
+            </select>
+            {errors.gender && (
+              <p className="text-red-500 text-sm">{errors.gender.message}</p>
+            )}
+          </div>
           <div className="grid gap-2 ">
             <Label className="text-md">Phone number</Label>
             <Input

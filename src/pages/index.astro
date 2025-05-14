@@ -1,9 +1,7 @@
 ---
 import '../styles/global.css';
 import Layout from "../layouts/main.astro";
-import BlogHomeDisplay from '@/components/BlogHomeDisplay.astro';
-import ReactBlog from '@/components/react/ReactBlog';
-import SearchSuggestion from '@/components/react/search/SearchSuggestion';
+import NotifyButton from "../components/react/Test";
 const BACKEND_API = "https://test-subdomain.keyrunasir.com";
 let blogs = null;
 try {
@@ -19,12 +17,8 @@ try {
 } catch (error) {
 	blogs = null;
 };
-// console.log("response", response)
 ---
-<Layout title="Home" >
-	<!-- {
-		blogs ? <BlogHomeDisplay blogs={blogs} /> : <ReactBlog />
-	} -->
-		<!-- <SearchSuggestion client:only="react"  /> -->
+<Layout title="Home">
+<NotifyButton client:load />
 </Layout>
 
