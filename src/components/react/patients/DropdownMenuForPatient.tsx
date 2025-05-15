@@ -68,14 +68,6 @@ function DropdownMenuForPatient() {
             </DropdownMenuContent>
           </DropdownMenu>
         )}
-      {!isAuthenticated && !isAdmin && !isPatient && !isPhysician && (
-        <div className="flex gap-2 items-center text-nowrap  p-[12px] no-underline text-lg text-center ml-auto mr-14">
-          <a href="/patients/login">Login</a>
-          <a className="hidden sm:block" href="/patients/signup">
-            /Signup
-          </a>
-        </div>
-      )}
     </>
   );
 }

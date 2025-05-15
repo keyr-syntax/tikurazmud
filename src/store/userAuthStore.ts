@@ -9,6 +9,13 @@ interface userAuthenticationInterface {
   profilePicture?: string | null;
 }
 
+export type userPhoneRedirectType = {
+  phoneNumber: string;
+};
+export interface userPhoneRedirectInterface {
+  loading: boolean;
+}
+
 export const userAuthenticationStore = create<userAuthenticationInterface>(
   () => ({
     isAuthenticated: false,
@@ -17,5 +24,11 @@ export const userAuthenticationStore = create<userAuthenticationInterface>(
     isAdmin: false,
     username: null,
     profilePicture: null,
+  })
+);
+
+export const userPhoneRedirectStore = create<userPhoneRedirectInterface>(
+  () => ({
+    loading: false,
   })
 );

@@ -100,7 +100,7 @@ function LoginPatient() {
           </Button>
           <div className="flex flex-row gap-2 mx-auto my-4">
             <span>Are you new patient?</span>
-            <a className="text-blue-700" href="/patients/signup">
+            <a className="text-blue-700" href="/patients/patient-signup">
               Signup
             </a>
           </div>

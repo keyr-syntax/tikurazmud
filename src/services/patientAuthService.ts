@@ -98,7 +98,7 @@ export const handlePatientLogin = async (
       loginPatientStore.setState({
         loading: false,
       });
-      window.location.href = "/patients/signup";
+      window.location.href = "/patients/patient-signup";
       return false;
     } else {
       toast.error(response?.message);

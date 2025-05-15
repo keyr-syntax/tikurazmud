@@ -9,6 +9,7 @@ import DropdownMenuForPatient from "./patients/DropdownMenuForPatient";
 import { handleUserAuthentication } from "@/services/userAuthService";
 import DropdownMenuForDoctor from "./doctors/DropdownMenuForDoctor";
 import DropdownMenuForAdmin from "./admin/DropdownMenuForAdmin";
+import PhoneLoginInput from "./user-auth/PhoneLoginInput";
 
 const NavigationMenu: React.FC = () => {
   const { query } = searchSuggestionStore();
@@ -53,6 +54,7 @@ const NavigationMenu: React.FC = () => {
         >
           Download App
         </a>
+        <PhoneLoginInput />
         <DropdownMenuForPatient />
         <DropdownMenuForDoctor />
         <DropdownMenuForAdmin />

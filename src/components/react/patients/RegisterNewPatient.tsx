@@ -140,7 +140,7 @@ function RegisterNewPatient() {
           </Button>
           <div className="flex flex-row gap-2 mx-auto my-4">
             <span>Already have an account?</span>
-            <a className="text-blue-700" href="/patients/login">
+            <a className="text-blue-700" href="/patients/patient-login">
               Login
             </a>
           </div>

@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 import Layout from "../layouts/main.astro";
-import NotifyButton from "../components/react/Test";
 const BACKEND_API = "https://test-subdomain.keyrunasir.com";
 let blogs = null;
 try {
@@ -19,6 +18,6 @@ try {
 };
 ---
 <Layout title="Home">
-<NotifyButton client:load />
+
 </Layout>
 
