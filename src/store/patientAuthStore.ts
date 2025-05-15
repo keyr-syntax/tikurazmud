@@ -38,6 +38,12 @@ interface editPatientProfileInterface {
   loading: boolean;
 }
 
+export interface changePasswordInterface {
+  oldPassword: string | null;
+  newPassword: string | null;
+  loading: boolean;
+}
+
 export const registerNewPatientStore = create<registerNewPatientInterface>(
   () => ({
     patientFormData: null,
@@ -61,6 +67,13 @@ export const authenticatePatientStore = create<authenticatePatientInterface>(
 export const editPatientProfileStore = create<editPatientProfileInterface>(
   () => ({
     editProfileForm: null,
+    loading: false,
+  })
+);
+export const changePatientPasswordStore = create<changePasswordInterface>(
+  () => ({
+    oldPassword: null,
+    newPassword: null,
     loading: false,
   })
 );

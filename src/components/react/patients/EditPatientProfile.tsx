@@ -12,7 +12,7 @@ import {
   handleFetchPatientProfile,
 } from "@/services/patientAuthService";
 import Loading from "@/components/ui/Loading";
-function EditProfile() {
+function EditPatientProfile() {
   const { editProfileForm, loading } = editPatientProfileStore();
   const {
     register,
@@ -53,23 +53,19 @@ function EditProfile() {
               Edit Your Profile
             </p>
             <div className="flex flex-col  md:flex-row  gap-2">
+              <div className="grid gap-2 w-full ">
+                <Input
+                  className="block border border-solid border-[rgb(255,255,255,0.2)] rounded "
+                  id="uniqueID"
+                  type="text"
+                  value={`Your medical record number (MRN) is ${editProfileForm?.uniqueID}`}
+                  placeholder="Full name"
+                  disabled
+                />
+              </div>
+            </div>
+            <div className="flex flex-col  md:flex-row  gap-2">
               <div className="grid gap-2 w-full md:w-3/4">
-                <Input
-                  className="block border border-solid border-[rgb(255,255,255,0.2)] rounded "
-                  id="uniqueID"
-                  type="text"
-                  value={`Your card number is ${editProfileForm?.uniqueID}`}
-                  placeholder="Full name"
-                  disabled
-                />
-                <Input
-                  className="block border border-solid border-[rgb(255,255,255,0.2)] rounded "
-                  id="uniqueID"
-                  type="text"
-                  value={`Profile picture`}
-                  placeholder="Full name"
-                  disabled
-                />
                 <Label className="text-md">Full Name</Label>
                 <Input
                   className="block border border-solid border-[rgb(255,255,255,0.2)] rounded"
@@ -146,4 +142,4 @@ function EditProfile() {
   );
 }
 
-export default EditProfile;
+export default EditPatientProfile;

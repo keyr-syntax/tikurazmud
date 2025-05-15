@@ -5,25 +5,24 @@ import { useForm } from "react-hook-form";
 import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
-  loginPatientStore,
-  type loginPatientType,
-} from "@/store/patientAuthStore";
-import { handlePatientLogin } from "@/services/patientAuthService";
+  loginDoctorStore,
+  type loginDoctorType,
+} from "@/store/doctorAuthStore";
+import { handleDoctorLogin } from "@/services/doctorAuthService";
 
-function LoginPatient() {
+function LoginDoctor() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const { loading } = loginPatientStore();
+  const { loading } = loginDoctorStore();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<loginPatientType>();
+  } = useForm<loginDoctorType>();
 
-  const submitPatientLoginData = async (formData: loginPatientType) => {
-    const success = await handlePatientLogin(formData);
+  const submitDoctorLoginData = async (formData: loginDoctorType) => {
+    const success = await handleDoctorLogin(formData);
     if (success) {
       window.location.href = "/";
-      // after successful signup, display profile-pic, turn-off login/signup button, add profile page and Logout option
     }
   };
 
@@ -31,31 +30,27 @@ function LoginPatient() {
     <>
       <div className="flex flex-col justify-center items-center  mb-8 w-full mt-[80px]">
         <form
-          onSubmit={handleSubmit(submitPatientLoginData)}
+          onSubmit={handleSubmit(submitDoctorLoginData)}
           className="flex flex-col gap-2 mx-auto mt-1 w-[90%] max-w-[500px] border border-solid border-[rgb(255,255,255,0.2)] p-8 rounded"
         >
-          <p className="text-center text-[24px] font-bold mb-5">
-            Patient Login
-          </p>
+          <p className="text-center text-[24px] font-bold mb-5">Doctor Login</p>
 
           <div className="grid gap-2 ">
-            <Label className="text-md">Phone number</Label>
+            <Label className="text-md">Email</Label>
             <Input
               className="block border border-solid border-[rgb(255,255,255,0.2)] rounded"
-              type="tel"
-              placeholder="09-xxxxxxx or 07-xxxxxxxx"
-              {...register("phoneNumber", {
-                required: "Phone number is required",
+              type="email"
+              placeholder="Your email address"
+              {...register("email", {
+                required: "Email is required",
                 pattern: {
-                  value: /^(09|07)\d{8}$/,
-                  message: "Invalid phone number",
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "Invalid email address",
                 },
               })}
             />
-            {errors.phoneNumber && (
-              <p className="text-red-500 text-sm">
-                {errors.phoneNumber.message}
-              </p>
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email.message}</p>
             )}
           </div>
 
@@ -98,16 +93,10 @@ function LoginPatient() {
           >
             {loading ? "Please wait" : "Submit"}
           </Button>
-          <div className="flex flex-row gap-2 mx-auto my-4">
-            <span>Are you new patient?</span>
-            <a className="text-blue-700" href="/patients/signup">
-              Signup
-            </a>
-          </div>
         </form>
       </div>
     </>
   );
 }
 
-export default LoginPatient;
+export default LoginDoctor;

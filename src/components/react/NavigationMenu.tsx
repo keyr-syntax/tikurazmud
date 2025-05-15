@@ -5,48 +5,21 @@ import { useRef, useState } from "react";
 import { SearchInput } from "../ui/input";
 import { searchSuggestionStore } from "@/store/searchStore";
 import SearchSuggestion from "./search/SearchSuggestion";
-import {
-  handleDeletePatientAccount,
-  handlePatientAuthentication,
-  handlePatientLogout,
-} from "@/services/patientAuthService";
-import { authenticatePatientStore } from "@/store/patientAuthStore";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+import DropdownMenuForPatient from "./patients/DropdownMenuForPatient";
+import { handleUserAuthentication } from "@/services/userAuthService";
+import DropdownMenuForDoctor from "./doctors/DropdownMenuForDoctor";
+import DropdownMenuForAdmin from "./admin/DropdownMenuForAdmin";
+
 const NavigationMenu: React.FC = () => {
   const { query } = searchSuggestionStore();
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
-  const { isAuthenticated, isPatient, username } = authenticatePatientStore();
-  const getFirstLetterOfName = (username: string) =>
-    username.charAt(0).toUpperCase();
 
   useEffect(() => {
-    handlePatientAuthentication();
+    // handlePatientAuthentication();
+    handleUserAuthentication();
   }, []);
   const menuRef = useRef<HTMLDivElement>(null);
   useClickOutside({ menuRef, setMenuOpen });
-
-  const deleteAccount = async () => {
-    const success = await handleDeletePatientAccount();
-    if (success) {
-      window.location.href = "/";
-    }
-  };
 
   return (
     <>
@@ -80,90 +53,9 @@ const NavigationMenu: React.FC = () => {
         >
           Download App
         </a>
-
-        {isAuthenticated && isPatient && username !== null ? (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <div className="flex items-center space-x-3 ml-auto mr-16">
-                <div className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-600 text-white font-semibold text-lg cursor-pointer">
-                  {getFirstLetterOfName(username)}
-                </div>
-                <span className="hidden sm:block text-white text-base font-medium cursor-pointer">
-                  {username}
-                </span>
-              </div>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56 my-4 mr-2 bg-[#151533]">
-              <DropdownMenuLabel
-                onClick={() => {
-                  window.location.href = "/patients/profile";
-                }}
-                className="border border-[rgb(255,255,255,0.2)] font-normal text-[18px] cursor-pointer"
-              >
-                Profile
-              </DropdownMenuLabel>
-              <DropdownMenuLabel
-                onClick={() => {
-                  // window.location.href = "/patients/profile";
-                }}
-                className="border border-[rgb(255,255,255,0.2)] font-normal text-[18px] cursor-pointer"
-              >
-                Change password
-              </DropdownMenuLabel>
-              <DropdownMenuLabel
-                onClick={() => {
-                  handlePatientLogout();
-                }}
-                className="border border-[rgb(255,255,255,0.2)] font-normal text-[18px] cursor-pointer"
-              >
-                Logout
-              </DropdownMenuLabel>
-
-              <DropdownMenuLabel
-                onClick={() => {
-                  // window.location.href = "/patients/profile";
-                }}
-                className="border border-[rgb(255,255,255,0.2)] font-normal text-[18px] cursor-pointer text-red-700"
-              >
-                <AlertDialog>
-                  <AlertDialogTrigger>Delete Account</AlertDialogTrigger>
-                  <AlertDialogContent className="bg-[#151533]">
-                    <AlertDialogHeader>
-                      <AlertDialogTitle className="text-white">
-                        Are you absolutely sure?
-                      </AlertDialogTitle>
-                      <AlertDialogDescription className="text-white">
-                        This action cannot be undone. This will permanently
-                        delete your account.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel className="text-white bg-green-500">
-                        Cancel
-                      </AlertDialogCancel>
-                      <AlertDialogAction
-                        onClick={() => {
-                          deleteAccount();
-                        }}
-                        className="bg-red-700 text-white"
-                      >
-                        Continue
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              </DropdownMenuLabel>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        ) : (
-          <div className="flex gap-2 items-center text-nowrap  p-[12px] no-underline text-lg text-center ml-auto mr-14">
-            <a href="/patients/login">Login</a>
-            <a className="hidden sm:block" href="/patients/signup">
-              /Signup
-            </a>
-          </div>
-        )}
-
+        <DropdownMenuForPatient />
+        <DropdownMenuForDoctor />
+        <DropdownMenuForAdmin />
         {!menuOpen && (
           <MenuIcon
             onClick={() => {

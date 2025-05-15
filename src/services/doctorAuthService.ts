@@ -1,6 +1,11 @@
 import { baseURL } from "@/lib/utils";
-import { registerNewDoctorStore } from "@/store/doctorAuthStore";
+import {
+  loginDoctorStore,
+  registerNewDoctorStore,
+  type loginDoctorType,
+} from "@/store/doctorAuthStore";
 import type { doctorType } from "@/types/userTypes";
+import toast from "react-hot-toast";
 
 export const handleRegisterNewDoctor = async (
   formData: doctorType
@@ -50,6 +55,49 @@ export const handleRegisterNewDoctor = async (
   } catch (error) {
     //toast.error("Registration failed");
     registerNewDoctorStore.setState({
+      loading: false,
+    });
+    return false;
+  }
+};
+
+export const handleDoctorLogin = async (
+  formData: loginDoctorType
+): Promise<boolean> => {
+  loginDoctorStore.setState({
+    loading: true,
+  });
+
+  try {
+    const data = await fetch(`${baseURL}/physician/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        email: formData.email,
+        password: formData.password,
+      }),
+    });
+
+    const response = await data.json();
+    if (response?.success) {
+      toast.success(response?.message);
+      loginDoctorStore.setState({
+        loading: false,
+      });
+      return true;
+    } else {
+      toast.error(response?.message);
+      loginDoctorStore.setState({
+        loading: false,
+      });
+      return false;
+    }
+  } catch (error) {
+    toast.error("Login failed");
+    loginDoctorStore.setState({
       loading: false,
     });
     return false;

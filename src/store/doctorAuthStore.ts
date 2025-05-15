@@ -21,9 +21,24 @@ interface registerNewDoctorInterface {
   loading: boolean;
 }
 
+export type loginDoctorType = {
+  email: string;
+  password: string;
+};
+
+interface loginDoctorInterface {
+  doctorLoginData: loginDoctorType | null;
+  loading: boolean;
+}
+
 export const registerNewDoctorStore = create<registerNewDoctorInterface>(
   () => ({
     doctorFormData: null,
     loading: false,
   })
 );
+
+export const loginDoctorStore = create<loginDoctorInterface>(() => ({
+  doctorLoginData: null,
+  loading: false,
+}));

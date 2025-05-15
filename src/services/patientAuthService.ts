@@ -1,11 +1,16 @@
 import { baseURL } from "@/lib/utils";
 import {
   authenticatePatientStore,
+  changePatientPasswordStore,
   editPatientProfileStore,
   loginPatientStore,
   registerNewPatientStore,
 } from "@/store/patientAuthStore";
-import type { loginPatientType, patientType } from "@/store/patientAuthStore";
+import type {
+  changePasswordInterface,
+  loginPatientType,
+  patientType,
+} from "@/store/patientAuthStore";
 import toast from "react-hot-toast";
 
 export const handleRegisterNewPatient = async (
@@ -205,7 +210,6 @@ export const handleFetchPatientProfile = async () => {
     });
   }
 };
-
 export const handleEditPatientProfile = async (
   formData: patientType
 ): Promise<boolean> => {
@@ -250,7 +254,6 @@ export const handleEditPatientProfile = async (
     return false;
   }
 };
-
 export const handleDeletePatientAccount = async (): Promise<boolean> => {
   try {
     const data = await fetch(`${baseURL}/patient/delete-account`, {
@@ -274,6 +277,48 @@ export const handleDeletePatientAccount = async (): Promise<boolean> => {
   } catch (error) {
     toast.error("Failed to delete account");
 
+    return false;
+  }
+};
+export const handleChangePatientPassword = async (
+  formData: changePasswordInterface
+): Promise<boolean> => {
+  try {
+    changePatientPasswordStore.setState({
+      loading: true,
+    });
+    const data = await fetch(`${baseURL}/patient/change-password`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        oldPassword: formData.oldPassword,
+        newPassword: formData.newPassword,
+      }),
+    });
+    const response = await data.json();
+
+    if (response?.success) {
+      toast.success(response?.message);
+      changePatientPasswordStore.setState({
+        loading: false,
+      });
+      await handlePatientAuthentication();
+      return true;
+    } else {
+      toast.error(response?.message);
+      changePatientPasswordStore.setState({
+        loading: false,
+      });
+      return false;
+    }
+  } catch (error) {
+    toast.error("Profile update failed");
+    changePatientPasswordStore.setState({
+      loading: false,
+    });
     return false;
   }
 };
