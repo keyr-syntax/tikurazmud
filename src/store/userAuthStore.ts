@@ -14,6 +14,7 @@ export type userPhoneRedirectType = {
 };
 export interface userPhoneRedirectInterface {
   loading: boolean;
+  phoneNumber: string | null;
 }
 
 export const userAuthenticationStore = create<userAuthenticationInterface>(
@@ -30,5 +31,6 @@ export const userAuthenticationStore = create<userAuthenticationInterface>(
 export const userPhoneRedirectStore = create<userPhoneRedirectInterface>(
   () => ({
     loading: false,
+    phoneNumber: null,
   })
 );

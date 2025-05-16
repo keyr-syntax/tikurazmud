@@ -54,7 +54,9 @@ export const handleUserAuthentication = async () => {
   }
 };
 
-export const handleUserRedirect = async (formData: userPhoneRedirectType) => {
+export const handleUserRedirect = async (
+  formData: userPhoneRedirectType
+): Promise<void> => {
   userPhoneRedirectStore.setState({
     loading: true,
   });
@@ -71,6 +73,7 @@ export const handleUserRedirect = async (formData: userPhoneRedirectType) => {
       }),
     });
     const response = await data.json();
+    console.log("Phone redirect", response);
     if (
       response?.success &&
       response?.isPatient &&
@@ -79,8 +82,9 @@ export const handleUserRedirect = async (formData: userPhoneRedirectType) => {
     ) {
       userPhoneRedirectStore.setState({
         loading: false,
+        phoneNumber: formData.phoneNumber,
       });
-      //pass the phone number to login state
+      console.log("phoneNumber", formData.phoneNumber);
       window.location.href = "/patients/patient-login";
       return;
     } else if (
@@ -109,9 +113,11 @@ export const handleUserRedirect = async (formData: userPhoneRedirectType) => {
       return;
     }
   } catch (error) {
-    toast.error(error.message);
+    console.log("Error", error);
+    toast.error("Try again");
     userPhoneRedirectStore.setState({
       loading: false,
     });
+    return;
   }
 };

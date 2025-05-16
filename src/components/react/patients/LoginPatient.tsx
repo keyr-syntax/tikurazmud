@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-menubar";
 import { useForm } from "react-hook-form";
@@ -9,15 +9,24 @@ import {
   type loginPatientType,
 } from "@/store/patientAuthStore";
 import { handlePatientLogin } from "@/services/patientAuthService";
+import { userPhoneRedirectStore } from "@/store/userAuthStore";
 
 function LoginPatient() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const { loading } = loginPatientStore();
+  const { phoneNumber } = userPhoneRedirectStore();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<loginPatientType>();
+
+  useEffect(() => {
+    if (phoneNumber) {
+      setValue("phoneNumber", phoneNumber);
+    }
+  }, [phoneNumber, setValue]);
 
   const submitPatientLoginData = async (formData: loginPatientType) => {
     const success = await handlePatientLogin(formData);
@@ -40,6 +49,7 @@ function LoginPatient() {
 
           <div className="grid gap-2 ">
             <Label className="text-md">Phone number</Label>
+            <Label className="text-md">Pass Phone number:{phoneNumber}</Label>
             <Input
               className="block border border-solid border-[rgb(255,255,255,0.2)] rounded"
               type="tel"

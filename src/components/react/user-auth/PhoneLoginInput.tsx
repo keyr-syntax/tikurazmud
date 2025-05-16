@@ -3,12 +3,12 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogTrigger,
+  AlertDialogTitle,
+  AlertDialogDescription,
 } from "@/components/ui/alert-dialog";
 
 import { Input } from "@/components/ui/input";
-import { Label } from "@radix-ui/react-menubar";
 import { useForm } from "react-hook-form";
-import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { userAuthenticationStore } from "@/store/userAuthStore";
 import {
@@ -20,8 +20,8 @@ import { handleUserRedirect } from "@/services/userAuthService";
 function PhoneLoginInput() {
   const { isAuthenticated, isPatient, isPhysician, isAdmin } =
     userAuthenticationStore();
-
   const { loading } = userPhoneRedirectStore();
+
   const {
     register,
     handleSubmit,
@@ -43,7 +43,8 @@ function PhoneLoginInput() {
             className="flex flex-col gap-2 mx-auto mt-1 w-[90%] max-w-[500px]  p-8 rounded"
           >
             <div className="grid gap-2 ">
-              <Label className="text-md">Phone number</Label>
+              <AlertDialogTitle>Phone number</AlertDialogTitle>
+              <AlertDialogDescription></AlertDialogDescription>
               <Input
                 className="block border border-solid border-[rgb(255,255,255,0.2)] rounded"
                 type="tel"

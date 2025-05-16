@@ -168,6 +168,7 @@ export const handlePatientLogout = async () => {
         isPatient: false,
         username: null,
       });
+      window.location.href = "/";
       localStorage.removeItem("patient");
     } else {
       toast.error("Logout failed");
