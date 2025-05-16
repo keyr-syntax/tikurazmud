@@ -38,6 +38,14 @@ function DropdownMenuForAdmin() {
               }}
               className="border border-[rgb(255,255,255,0.2)] font-normal text-[18px] cursor-pointer"
             >
+              Manage Physician
+            </DropdownMenuLabel>
+            <DropdownMenuLabel
+              onClick={() => {
+                window.location.href = "/doctors/doctor-profile";
+              }}
+              className="border border-[rgb(255,255,255,0.2)] font-normal text-[18px] cursor-pointer"
+            >
               Edit profile
             </DropdownMenuLabel>
             <DropdownMenuLabel className="border border-[rgb(255,255,255,0.2)] font-normal text-[18px] cursor-pointer">

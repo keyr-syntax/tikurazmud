@@ -4,10 +4,14 @@ import {
   loginDoctorStore,
   registerNewDoctorStore,
   type loginDoctorType,
+  type doctorType,
+  type changeDoctorPasswordInterface,
+  changeDoctorPasswordStore,
 } from "@/store/doctorAuthStore";
-import type { doctorType } from "@/types/userTypes";
+
 import toast from "react-hot-toast";
 import { handleUserAuthentication } from "./userAuthService";
+import { userAuthenticationStore } from "@/store/userAuthStore";
 
 export const handleRegisterNewDoctor = async (
   formData: doctorType
@@ -184,6 +188,109 @@ export const handleEditDoctorProfile = async (
     editDoctorProfileStore.setState({
       loading: false,
     });
+    return false;
+  }
+};
+export const handleChangeDoctorPassword = async (
+  formData: changeDoctorPasswordInterface
+): Promise<boolean> => {
+  try {
+    changeDoctorPasswordStore.setState({
+      loading: true,
+    });
+    const data = await fetch(`${baseURL}/physician/change-password`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        oldPassword: formData.oldPassword,
+        newPassword: formData.newPassword,
+      }),
+    });
+    const response = await data.json();
+
+    if (response?.success) {
+      toast.success(response?.message);
+      changeDoctorPasswordStore.setState({
+        loading: false,
+      });
+      await handleUserAuthentication();
+      return true;
+    } else {
+      toast.error(response?.message);
+      changeDoctorPasswordStore.setState({
+        loading: false,
+      });
+      return false;
+    }
+  } catch (error) {
+    toast.error("Profile update failed");
+    changeDoctorPasswordStore.setState({
+      loading: false,
+    });
+    return false;
+  }
+};
+export const handleDoctorLogout = async () => {
+  try {
+    const data = await fetch(`${baseURL}/physician/logout`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+
+    const response = await data.json();
+
+    if (response?.success) {
+      toast.success("Logout successful");
+
+      userAuthenticationStore.setState({
+        isAuthenticated: false,
+        isPatient: false,
+        isPhysician: false,
+        isAdmin: false,
+        username: null,
+        profilePicture: null,
+      });
+      window.location.href = "/";
+      localStorage.removeItem("username");
+      localStorage.removeItem("profilePicture");
+    } else {
+      toast.error("Logout failed");
+    }
+  } catch (error) {
+    toast.error("Logout failed");
+  }
+};
+export const handleDeleteDoctorAccount = async (): Promise<boolean> => {
+  try {
+    const data = await fetch(`${baseURL}/physician/delete-account`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+    const response = await data.json();
+
+    if (response?.success) {
+      toast.success(response?.message);
+      await handleUserAuthentication();
+      localStorage.removeItem("username");
+      localStorage.removeItem("profilePicture");
+
+      return true;
+    } else {
+      toast.error(response?.message);
+      return false;
+    }
+  } catch (error) {
+    toast.error("Failed to delete account");
+
     return false;
   }
 };

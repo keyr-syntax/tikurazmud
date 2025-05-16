@@ -38,7 +38,7 @@ interface editPatientProfileInterface {
   loading: boolean;
 }
 
-export interface changePasswordInterface {
+export interface changePatientPasswordInterface {
   oldPassword: string | null;
   newPassword: string | null;
   loading: boolean;
@@ -70,10 +70,9 @@ export const editPatientProfileStore = create<editPatientProfileInterface>(
     loading: false,
   })
 );
-export const changePatientPasswordStore = create<changePasswordInterface>(
-  () => ({
+export const changePatientPasswordStore =
+  create<changePatientPasswordInterface>(() => ({
     oldPassword: null,
     newPassword: null,
     loading: false,
-  })
-);
+  }));

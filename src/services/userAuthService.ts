@@ -53,7 +53,6 @@ export const handleUserAuthentication = async () => {
     });
   }
 };
-
 export const handleUserRedirect = async (
   formData: userPhoneRedirectType
 ): Promise<void> => {

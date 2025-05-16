@@ -7,12 +7,13 @@ import {
   registerNewPatientStore,
 } from "@/store/patientAuthStore";
 import type {
-  changePasswordInterface,
+  changePatientPasswordInterface,
   loginPatientType,
   patientType,
 } from "@/store/patientAuthStore";
 import toast from "react-hot-toast";
 import { handleUserAuthentication } from "./userAuthService";
+import { userAuthenticationStore } from "@/store/userAuthStore";
 
 export const handleRegisterNewPatient = async (
   formData: patientType
@@ -164,13 +165,17 @@ export const handlePatientLogout = async () => {
     if (response?.success) {
       toast.success("Logout successful");
 
-      authenticatePatientStore.setState({
+      userAuthenticationStore.setState({
         isAuthenticated: false,
         isPatient: false,
+        isPhysician: false,
+        isAdmin: false,
         username: null,
+        profilePicture: null,
       });
       window.location.href = "/";
-      localStorage.removeItem("patient");
+      localStorage.removeItem("username");
+      localStorage.removeItem("profilePicture");
     } else {
       toast.error("Logout failed");
     }
@@ -284,7 +289,7 @@ export const handleDeletePatientAccount = async (): Promise<boolean> => {
   }
 };
 export const handleChangePatientPassword = async (
-  formData: changePasswordInterface
+  formData: changePatientPasswordInterface
 ): Promise<boolean> => {
   try {
     changePatientPasswordStore.setState({

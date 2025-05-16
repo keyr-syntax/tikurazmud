@@ -36,7 +36,6 @@ function PhoneLoginInput() {
             Login
           </AlertDialogTrigger>
         )}
-
         <AlertDialogContent className="bg-[#151533]">
           <form
             onSubmit={handleSubmit(handleUserRedirect)}

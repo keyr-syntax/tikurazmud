@@ -16,7 +16,6 @@ const NavigationMenu: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    // handlePatientAuthentication();
     handleUserAuthentication();
   }, []);
   const menuRef = useRef<HTMLDivElement>(null);

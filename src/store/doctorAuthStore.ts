@@ -20,6 +20,11 @@ interface registerNewDoctorInterface {
   doctorFormData: doctorType | null;
   loading: boolean;
 }
+export interface changeDoctorPasswordInterface {
+  oldPassword: string | null;
+  newPassword: string | null;
+  loading: boolean;
+}
 
 export type loginDoctorType = {
   email: string;
@@ -51,6 +56,14 @@ export const loginDoctorStore = create<loginDoctorInterface>(() => ({
 export const editDoctorProfileStore = create<editDoctorProfileInterface>(
   () => ({
     editDoctorProfileForm: null,
+    loading: false,
+  })
+);
+
+export const changeDoctorPasswordStore = create<changeDoctorPasswordInterface>(
+  () => ({
+    oldPassword: null,
+    newPassword: null,
     loading: false,
   })
 );

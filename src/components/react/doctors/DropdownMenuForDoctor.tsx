@@ -4,10 +4,11 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import DeletePatientAccount from "../patients/DeletePatientAccount";
-import ChangePatientPassword from "../patients/ChangePatientPassword";
-import { handlePatientLogout } from "@/services/patientAuthService";
+
 import { userAuthenticationStore } from "@/store/userAuthStore";
+import ChangeDoctorPassword from "./ChangeDoctorPassword";
+import { handleDoctorLogout } from "@/services/doctorAuthService";
+import DeleteDoctorAccount from "./DeleteDoctorAccount";
 
 function DropdownMenuForDoctor() {
   const {
@@ -53,11 +54,11 @@ function DropdownMenuForDoctor() {
                 Edit profile
               </DropdownMenuLabel>
               <DropdownMenuLabel className="border border-[rgb(255,255,255,0.2)] font-normal text-[18px] cursor-pointer">
-                <ChangePatientPassword />
+                <ChangeDoctorPassword />
               </DropdownMenuLabel>
               <DropdownMenuLabel
                 onClick={() => {
-                  handlePatientLogout();
+                  handleDoctorLogout();
                 }}
                 className="border border-[rgb(255,255,255,0.2)] font-normal text-[18px] cursor-pointer"
               >
@@ -65,7 +66,7 @@ function DropdownMenuForDoctor() {
               </DropdownMenuLabel>
 
               <DropdownMenuLabel className="border border-[rgb(255,255,255,0.2)] font-normal text-[18px] cursor-pointer ">
-                <DeletePatientAccount />
+                <DeleteDoctorAccount />
               </DropdownMenuLabel>
             </DropdownMenuContent>
           </DropdownMenu>
