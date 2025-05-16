@@ -12,6 +12,7 @@ import type {
   patientType,
 } from "@/store/patientAuthStore";
 import toast from "react-hot-toast";
+import { handleUserAuthentication } from "./userAuthService";
 
 export const handleRegisterNewPatient = async (
   formData: patientType
@@ -238,7 +239,8 @@ export const handleEditPatientProfile = async (
         loading: false,
         editProfileForm: null,
       });
-      await handlePatientAuthentication();
+      // await handlePatientAuthentication();
+      await handleUserAuthentication();
       return true;
     } else {
       toast.error(response?.message);

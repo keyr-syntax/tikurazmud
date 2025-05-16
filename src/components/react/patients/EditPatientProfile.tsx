@@ -59,7 +59,6 @@ function EditPatientProfile() {
                   id="uniqueID"
                   type="text"
                   value={`Your medical record number (MRN) is ${editProfileForm?.uniqueID}`}
-                  placeholder="Full name"
                   disabled
                 />
               </div>

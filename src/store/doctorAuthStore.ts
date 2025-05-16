@@ -7,9 +7,9 @@ export type doctorType = {
   lastName: string;
   gender: string;
   email: string;
-  password: string;
+  password?: string;
   phoneNumber: string;
-  isPhysician: boolean;
+  isPhysician?: boolean;
   isAdmin?: boolean;
   isBlocked?: boolean;
   softDeleted?: boolean;
@@ -31,6 +31,11 @@ interface loginDoctorInterface {
   loading: boolean;
 }
 
+interface editDoctorProfileInterface {
+  editDoctorProfileForm: doctorType | null;
+  loading: boolean;
+}
+
 export const registerNewDoctorStore = create<registerNewDoctorInterface>(
   () => ({
     doctorFormData: null,
@@ -42,3 +47,10 @@ export const loginDoctorStore = create<loginDoctorInterface>(() => ({
   doctorLoginData: null,
   loading: false,
 }));
+
+export const editDoctorProfileStore = create<editDoctorProfileInterface>(
+  () => ({
+    editDoctorProfileForm: null,
+    loading: false,
+  })
+);
