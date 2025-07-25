@@ -1,21 +1,6 @@
 ---
 import '../styles/global.css';
 import Layout from "../layouts/main.astro";
-const BACKEND_API = "https://test-subdomain.keyrunasir.com";
-let blogs = null;
-try {
-	const data = await fetch(`${BACKEND_API}/api/blog/fetchallblogs`);
-    const response = await data.json();
-	if(response.success){
-
-		blogs = response.post;
-
-	} else {
-		blogs = null;
-	}
-} catch (error) {
-	blogs = null;
-};
 ---
 <Layout title="Home">
 
