@@ -2,6 +2,7 @@
 import HomePage from '@/components/HomePage';
 import '../styles/global.css';
 import ToasterGlobal from '@/components/Toaster';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 ---
 <html lang="en">
@@ -16,6 +17,7 @@ import ToasterGlobal from '@/components/Toaster';
 	</head>
 	<body>
 	      <ToasterGlobal client:load/>
+		<GoogleAnalytics client:load />
             <HomePage client:load />
 	
 		<slot />

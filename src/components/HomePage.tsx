@@ -11,7 +11,6 @@ import { ScrollToTop } from "./ScrollToTop";
 export default function HomePage() {
   return (
     <>
-      <GoogleAnalytics />
       <Navbar />
       <AboutUs />
       <OurProfessionalsCarousel />
