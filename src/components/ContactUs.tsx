@@ -4,7 +4,6 @@ import { Phone } from "lucide-react";
 import { Mail } from "lucide-react";
 import { useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
-import { Label } from "@radix-ui/react-label";
 
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
@@ -29,9 +28,6 @@ export default function ContactUs() {
     const serviceId = "service_onyl73b";
     const templateId = "template_8v1c0ho";
     const publicKey = "Z8FK6MGCDurMVaz6Q";
-    // console.log("Service ID:", serviceId);
-    // console.log("Template ID:", templateId);
-    // console.log("Public Key:", publicKey);
 
     if (!serviceId || !templateId || !publicKey) {
       toast.error("Missing configuration for email service");
@@ -54,7 +50,6 @@ export default function ContactUs() {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       (error) => {
         toast.error("Failed to send Message");
-        // console.log("Failed to send Message", error);
       }
     );
   };
@@ -62,13 +57,13 @@ export default function ContactUs() {
     <>
       <div
         id="contactus"
-        className="flex flex-col justify-start mb-[10px] mt-20"
+        className="flex flex-col justify-start mb-[10px] mt-20 w-full"
       >
-        <p className="relative mt-15 mb-4 mx-auto w-[70%] sm:max-w-[500px] text-[30px] font-semibold p-1 text-center  text-black after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-[100px] after:h-[4px] after:bg-blue-600 rounded-2xl">
+        <p className="relative mt-15 mb-4 mx-auto w-[90%] sm:max-w-[550px] text-[30px] font-semibold p-1 text-center  text-black after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-[100px] after:h-[4px] after:bg-blue-600 rounded-2xl">
           Contact Us
         </p>
 
-        <p className="flex flex-col gap-2 my-1 mx-auto w-[80%] sm:max-w-[400px] text-[20px] p-1 text-start rounded">
+        <p className="flex flex-col gap-2 my-1 mx-auto w-[90%] sm:max-w-[550px] text-[20px] p-1 text-start rounded">
           <div className="flex items-center">
             <Phone size={30} className="mr-3" /> <span>0911 48 26 52</span>
           </div>
@@ -77,36 +72,36 @@ export default function ContactUs() {
             <Phone size={30} className="mr-3" /> <span>0913 67 12 30</span>
           </div>
         </p>
-        <p className="flex mt-1 mb-3 mx-auto w-[80%] sm:max-w-[400px] text-[20px] p-1 text-start rounded flex-wrap">
+        <p className="flex mt-1 mb-3 mx-auto w-[90%] sm:max-w-[550px] text-[20px] p-1 text-start rounded">
           <div className="flex items-center">
-            <Mail size={30} className="mr-3 " />{" "}
+            <Mail size={30} className="mr-1 " />{" "}
             <span className="text-wrap break-words text-[18px]">
               onco-care-ethiopia@gmail.com
             </span>
           </div>
         </p>
 
-        <p className="flex mt-1 mb-3 mx-auto w-[80%] sm:max-w-[400px] text-[20px] p-1 text-start rounded flex-wrap">
-          <div className="flex items-center flex-wrap gap-2">
-            <FaTelegram size={30} className="mr-3 " />{" "}
+        <p className="flex mt-1 mb-3 mx-auto w-[90%] sm:max-w-[550px] text-[20px] p-1 text-start rounded">
+          <div className="flex items-center gap-1">
+            <FaTelegram size={30} className="mr-1 " />{" "}
             <span className="text-wrap break-words text-[18px]">
               t.me/onco-care-ethiopia
             </span>
           </div>
         </p>
 
-        <p className="flex mt-1 mb-3 mx-auto w-[80%] sm:max-w-[400px] text-[20px] p-1 text-start rounded flex-wrap">
-          <div className="flex items-center flex-wrap gap-2">
-            <FaFacebook size={30} className="mr-3 " />{" "}
+        <p className="flex mt-1 mb-3 mx-auto w-[90%] sm:max-w-[550px] text-[20px] p-1 text-start rounded">
+          <div className="flex items-center gap-1">
+            <FaFacebook size={30} className="mr-1 " />{" "}
             <span className="text-wrap break-words text-[18px]">
               facebook.com/onco-care-ethiopia
             </span>
           </div>
         </p>
 
-        <p className="flex mt-1 mb-3 mx-auto w-[80%] sm:max-w-[400px] text-[20px] p-1 text-start rounded flex-wrap">
-          <div className="flex items-center flex-wrap gap-2">
-            <FaLinkedin size={30} className="mr-3 " />{" "}
+        <p className="flex mt-1 mb-3 mx-auto w-[90%] sm:max-w-[550px] text-[20px] p-1 text-start rounded">
+          <div className="flex items-center 9 gap-1">
+            <FaLinkedin size={30} className="mr-1 " />{" "}
             <span className="text-wrap break-words text-[18px]">
               linkedin.com/onco-care-ethiopia
             </span>
@@ -120,9 +115,9 @@ export default function ContactUs() {
         >
           <p className="text-center text-[24px] font-bold">Send us Email</p>
           <div className="grid gap-2 ">
-            <Label className="text-md" htmlFor="name">
+            <label className="text-md" htmlFor="name">
               Name
-            </Label>
+            </label>
             <Input
               className="block border border-[rgba(196,186,186,0.8)] "
               id="name"
@@ -137,9 +132,9 @@ export default function ContactUs() {
             />
           </div>
           <div className="grid gap-2 ">
-            <Label className="text-md" htmlFor="email">
+            <label className="text-md" htmlFor="email">
               Email
-            </Label>
+            </label>
             <Input
               className="block border border-[rgba(196,186,186,0.8)] "
               id="email"
@@ -154,9 +149,9 @@ export default function ContactUs() {
             />
           </div>
           <div className="grid gap-2 ">
-            <Label className="text-md" htmlFor="phone_number">
+            <label className="text-md" htmlFor="phone_number">
               Phone number
-            </Label>
+            </label>
             <Input
               className="block border border-[rgba(196,186,186,0.8)] "
               id="phone_number"
@@ -173,9 +168,9 @@ export default function ContactUs() {
             />
           </div>
           <div className="grid gap-2 ">
-            <Label className="text-md" htmlFor="message">
+            <label className="text-md" htmlFor="message">
               Message
-            </Label>
+            </label>
             <Textarea
               className="block border border-[rgba(196,186,186,0.8)] "
               id="email"

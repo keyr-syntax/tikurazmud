@@ -1,21 +1,18 @@
 ---
 import HomePage from '@/components/HomePage';
 import '../styles/global.css';
-import NavigationMenu from '@/components/react/NavigationMenu';
-import ToasterGlobal from '@/components/react/Toaster';
-const { title, description } = Astro.props;
+import ToasterGlobal from '@/components/Toaster';
 
 ---
-
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="description" content={ 
-		description ? description  : "Onco Care Ethiopia is a multidisciplinary private oncology service provider based in Ethiopia. Comprising a team of expert clinical oncologists, medical physicists, and Radiotherapy Technologists (RTTs), Onco Care Ethiopia is committed to delivering world-class radiotherapy and chemotherapy services in collaboration with private and public hospitals across Ethiopia."
-		}/>
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>{ title ? title : "Tikur Azmud"}</title>
+		<meta name="viewport" content="width=device-width" initial-scale=1.0" />
+		<meta name="description" content="Onco Care Ethiopia is a multidisciplinary private oncology service provider based in Ethiopia. Comprising a team of expert clinical oncologists, medical physicists, and Radiotherapy Technologists (RTTs), Onco Care Ethiopia is committed to delivering world-class radiotherapy and chemotherapy services in collaboration with private and public hospitals across Ethiopia."/>
+		<meta name="keywords" content="Onco Care Ethiopia, Dr. Keyru Nasir, Dr. Yonas Dandena, Eskadmas Yinesu, DR. Tsion Zebdiwos, Dr. Hawi Furgassa, Dr. Bethelhem Getachew" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+		 <link rel="canonical" href="https://onco-care-ethiopia.keyrunasir.com/" />
+		<title>{`Onco Care Ethiopia`}</title>
 	</head>
 	<body>
 	      <ToasterGlobal client:load/>

@@ -37,7 +37,6 @@ export default function OurServices() {
               width={400}
               height={300}
               style={{ objectFit: "cover" }}
-
             />
           </div>
         ))}

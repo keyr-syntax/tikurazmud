@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://onco-care-ethiopia.keyrunasir.com/sitemap.xml

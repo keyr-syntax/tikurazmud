@@ -7,7 +7,6 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { ProfessionalsList } from "@/lib/ProfessionalsList";
-import Image from "next/image";
 
 export default function OurProfessionalsCarousel() {
   const plugin = React.useRef(
@@ -39,7 +38,7 @@ export default function OurProfessionalsCarousel() {
                   <img
                     src={professional.image}
                     alt={`photo of ${professional.name}`}
-                    className="w-28 h-27 rounded-full mx-auto"
+                    className="w-25 h-25 rounded-full mx-auto"
                     width={210}
                     height={140}
                     sizes="(max-width: 768px) 128px, 160px"

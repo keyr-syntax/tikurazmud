@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function AboutUs() {
   return (
     <>
@@ -24,14 +22,13 @@ export default function AboutUs() {
           </div>
         </div>
 
-        <Image
+        <img
           src="/onco-care-logo-hero-section.jpg"
           alt="onco care ethiopia logo"
           className="w-full h-[300px] object-cover rounded-3xl border border-[rgba(196,186,186,0.8)] m-auto max-w-[600px]"
           width={450}
           height={300}
           // style={{ width: "90%", height: "90%", objectFit: "cover" }}
-          priority
         />
       </div>
     </>

@@ -8,7 +8,7 @@ export default function Navbar() {
   const menuRef = useRef<HTMLDivElement>(null);
   useClickOutsideNavbarMenu({ menuRef, setMenuOpen });
   const scrollToIdWithOffset = (id: string) => {
-    const yOffset = -100; // Adjust this value to match your navbar height (px)
+    const yOffset = -100;
     const el = document.getElementById(id);
     if (el) {
       const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
@@ -94,7 +94,7 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="bg-[#151533] flex flex-col overflow-hidden md:hidden  mx-auto w-full  border border-solid border-borderColor  fixed top-18 left-0 right-0 text-white"
+            className="bg-[#151533] flex flex-col overflow-hidden md:hidden  mx-auto w-full    fixed top-18 left-0 right-0 text-white"
             style={{ zIndex: 1000 }}
           >
             <p
@@ -102,7 +102,7 @@ export default function Navbar() {
                 scrollToIdWithOffset("aboutus");
                 setTimeout(() => setMenuOpen(false), 1000);
               }}
-              className="flex md:hidden gap-2 items-center text-nowrap p-[12px] no-underline text-lg text-center cursor-pointer"
+              className="flex md:hidden gap-2 items-center text-nowrap p-[12px] no-underline text-lg text-center cursor-pointer ml-4"
             >
               About Us
             </p>
@@ -112,7 +112,7 @@ export default function Navbar() {
                 scrollToIdWithOffset("ourprofessionals");
                 setTimeout(() => setMenuOpen(false), 1000);
               }}
-              className="flex md:hidden gap-2 items-center text-nowrap p-[12px] no-underline text-lg text-center cursor-pointer"
+              className="flex md:hidden gap-2 items-center text-nowrap p-[12px] no-underline text-lg text-center cursor-pointer ml-4"
             >
               Our Professionals
             </p>
@@ -121,7 +121,7 @@ export default function Navbar() {
                 scrollToIdWithOffset("services");
                 setTimeout(() => setMenuOpen(false), 1000);
               }}
-              className="flex md:hidden gap-2 items-center text-nowrap p-[12px] no-underline text-lg text-center cursor-pointer"
+              className="flex md:hidden gap-2 items-center text-nowrap p-[12px] no-underline text-lg text-center cursor-pointer ml-4"
             >
               Services
             </p>
@@ -130,7 +130,7 @@ export default function Navbar() {
                 scrollToIdWithOffset("contactus");
                 setTimeout(() => setMenuOpen(false), 1000);
               }}
-              className="flex md:hidden gap-2 items-center text-nowrap p-[12px] no-underline text-lg text-center cursor-pointer"
+              className="flex md:hidden gap-2 items-center text-nowrap p-[12px] no-underline text-lg text-center cursor-pointer ml-4"
             >
               Contact Us
             </p>
@@ -139,7 +139,7 @@ export default function Navbar() {
                 scrollToIdWithOffset("location");
                 setTimeout(() => setMenuOpen(false), 1000);
               }}
-              className="flex md:hidden gap-2 items-center text-nowrap p-[12px] no-underline text-lg text-center cursor-pointer"
+              className="flex md:hidden gap-2 items-center text-nowrap p-[12px] no-underline text-lg text-center cursor-pointer ml-4"
             >
               Location
             </p>

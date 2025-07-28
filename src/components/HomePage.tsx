@@ -1,14 +1,17 @@
 import AboutUs from "./AboutUs";
 import ContactUs from "./ContactUs";
 import Footer from "./Footer";
+import GoogleAnalytics from "./GoogleAnalytics";
 import Location from "./Location";
 import Navbar from "./Navbar";
 import OurProfessionalsCarousel from "./OurProfessionalsCarousel";
 import OurServices from "./OurServices";
+import { ScrollToTop } from "./ScrollToTop";
 
 export default function HomePage() {
   return (
     <>
+      <GoogleAnalytics />
       <Navbar />
       <AboutUs />
       <OurProfessionalsCarousel />
@@ -16,6 +19,7 @@ export default function HomePage() {
       <ContactUs />
       <Location />
       <Footer />
+      <ScrollToTop />
     </>
   );
 }
